@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Tambah
+{% endblock page_title %}
+
+{% block contents %}
+	<h1>Tambah Kategori</h1>
+
+	<form method='POST'>
+		{% csrf_token %}
+
+		<div class="form-group">
+		    <label for="{{form.kategori.id_for_label}}">{{form.kategori.label}}:</label>
+		    <input type="text" class="form-control" name="{{form.kategori.name}}" maxlength="{{form.kategori.max}}" required id="{{form.kategori.id_for_label}}">    
+		</div>
+
+		<button type="submit" class="btn btn-primary">Tambah</button>
+	</form>
+	
+{% endblock contents %}
