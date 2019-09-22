@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import (
-	CreateView, 
+	CreateView,
 	ListView,
 	DetailView,
 	UpdateView,
-	DeleteView,	
+	DeleteView,
 )
 
 # Create your views here.
@@ -54,7 +54,7 @@ class ArtikelDetailView(DetailView):
 		self.kwargs.update({'kategori_list':kategori_list})
 
 		artikel_serupa = self.model.objects.filter(kategori=self.object.kategori).exclude(id=self.object.id)
-		self.kwargs.update({'artikel_serupa':artikel_serupa})	
+		self.kwargs.update({'artikel_serupa':artikel_serupa})
 
 		kwargs = self.kwargs
 		return super().get_context_data(*args,**kwargs)
@@ -74,7 +74,7 @@ class ArtikelKategoriListView(ListView):
 		kategori_list = self.model.objects.values_list('kategori', flat=True).distinct().exclude(kategori=self.kwargs['kategori'])
 		self.kwargs.update({'kategori_list':kategori_list})
 		kwargs = self.kwargs
-		return super().get_context_data(*args,**kwargs)	
+		return super().get_context_data(*args,**kwargs)
 
 
 class ArtikelListView(ListView):
@@ -83,7 +83,7 @@ class ArtikelListView(ListView):
     context_object_name = 'artikel_list'
     ordering = ['-published']
     # paginate_by = 3
-    
+
     def get_context_data(self,*args,**kwargs):
     	kategori_list = self.model.objects.values_list('kategori', flat=True).distinct()
     	self.kwargs.update({'kategori_list':kategori_list})
@@ -94,4 +94,4 @@ class ArtikelListView(ListView):
 class ArtikelUpdateView(UpdateView):
 	form_class = ArtikelForm
 	model = Artikel
-	template_name = "artikel/artikel_update.html"
+	template_name = "artikel/artikel_updatex.html"
